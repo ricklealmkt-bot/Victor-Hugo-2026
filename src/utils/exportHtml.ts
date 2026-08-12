@@ -1,7 +1,7 @@
 import victorHugoImg from '../assets/images/victor_hugo_official_portrait_1786557807492.jpg';
 
 export const generateStandaloneHtml = (): string => {
-  const customPhoto = typeof window !== 'undefined' ? localStorage.getItem('victor_custom_photo_v4') : null;
+  const customPhoto = typeof window !== 'undefined' ? localStorage.getItem('victor_custom_photo_v5') : null;
   const validCustomPhoto = customPhoto && !customPhoto.startsWith('blob:') ? customPhoto : null;
   const photoUrl = validCustomPhoto || victorHugoImg;
   const photoHtml = `<img src="${photoUrl}" class="w-full h-full object-cover object-top rounded-xl" alt="Victor Hugo - Consultor Estratégico de Brindes B2B" />`;

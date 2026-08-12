@@ -6,13 +6,15 @@ import victorHugoImg from '../assets/images/victor_hugo_official_portrait_178655
 
 export const HeroSection: React.FC = () => {
   const { isAdmin } = useAdmin();
-  const STORAGE_KEY = 'victor_custom_photo_v4';
+  const STORAGE_KEY = 'victor_custom_photo_v5';
 
   const [customPhotoUrl, setCustomPhotoUrl] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
+      // Clear all legacy custom photos so the real attached photo displays by default
       localStorage.removeItem('victor_custom_photo');
       localStorage.removeItem('victor_custom_photo_v2');
       localStorage.removeItem('victor_custom_photo_v3');
+      localStorage.removeItem('victor_custom_photo_v4');
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved && !saved.startsWith('blob:')) {
         return saved;
@@ -45,6 +47,8 @@ export const HeroSection: React.FC = () => {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem('victor_custom_photo');
       localStorage.removeItem('victor_custom_photo_v2');
+      localStorage.removeItem('victor_custom_photo_v3');
+      localStorage.removeItem('victor_custom_photo_v4');
     }
   };
 
