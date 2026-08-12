@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+:root {
+  --gold-primary: #D4AF37;
+  --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D592 50%, #B8860B 100%);
+  --bg-dark: #000000;
+  --bg-card: #0D0D0D;
+  --text-muted: #A0A0A0;
+  --danger: #802020;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif-luxury {
+    font-family: 'Montserrat', 'Inter', sans-serif;
+  }
+}
+
+/* Gold Utilities */
+.gold-text, .text-gold-gradient {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+.text-gold-light {
+  background: linear-gradient(135deg, #FFF6D6 0%, #F3E5AB 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border {
+  border: 1px solid var(--gold-primary);
+}
+
+.gold-btn, .bg-gold-gradient {
+  background: var(--gold-gradient);
+  color: #000000;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gold-btn:hover, .bg-gold-gradient-hover {
+  background: linear-gradient(135deg, #F5D77F 0%, #E6CA65 40%, #B8860B 100%);
+}
+
+.bg-gold-radial {
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.border-gold-subtle {
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+.border-gold-glow {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.12), inset 0 0 10px rgba(212, 175, 55, 0.05);
+}
+
+/* Cards & Polish Layout Components */
+.card, .glass-card-dark {
+  background: var(--bg-card);
+  border-radius: 8px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-gold {
+  background: linear-gradient(180deg, rgba(20, 18, 14, 0.95) 0%, rgba(13, 13, 13, 0.98) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.08);
+}
+
+.glass-card-danger {
+  background: rgba(128, 32, 32, 0.08);
+  border-left: 4px solid var(--danger);
+  border-top: 1px solid rgba(128, 32, 32, 0.25);
+  border-right: 1px solid rgba(128, 32, 32, 0.25);
+  border-bottom: 1px solid rgba(128, 32, 32, 0.25);
+  border-radius: 8px;
+}
+
+.glass-card-strategic {
+  background: rgba(212, 175, 55, 0.08);
+  border-left: 4px solid var(--gold-primary);
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  border-right: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+}
+
+.step-number {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold-primary);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.consultant-frame {
+  width: 100%;
+  aspect-ratio: 1/1.1;
+  background: linear-gradient(45deg, #1a1a1a 0%, #050505 100%);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.consultant-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  pointer-events: none;
+}
+
+/* Subtle Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(212,175,55,0) 0%, rgba(255,246,214,0.3) 50%, rgba(212,175,55,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Custom Gold Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2415;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
