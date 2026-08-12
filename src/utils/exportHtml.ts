@@ -1,4 +1,13 @@
 export const generateStandaloneHtml = (): string => {
+  const customPhoto = typeof window !== 'undefined' ? localStorage.getItem('victor_custom_photo') : null;
+  const photoHtml = customPhoto
+    ? `<img src="${customPhoto}" class="w-full h-full object-cover object-top rounded-xl" alt="Victor Hugo - Consultor Estratégico de Brindes B2B" />`
+    : `<div class="w-28 h-28 rounded-full border-2 border-[#D4AF37] p-1 bg-[#1A1810]">
+            <div class="w-full h-full rounded-full bg-[#0D0D0D] flex items-center justify-center text-[#D4AF37] font-bold text-2xl">
+              VH
+            </div>
+          </div>`;
+
   return `<!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
@@ -160,12 +169,8 @@ export const generateStandaloneHtml = (): string => {
     <!-- Victor Hugo Executive Card Frame -->
     <div class="lg:col-span-5 flex justify-center">
       <div class="w-full max-w-md p-4 rounded-2xl glass-card-gold border border-[#D4AF37]/40 text-center">
-        <div class="w-full aspect-[4/5] rounded-xl bg-[#12110D] border border-[#D4AF37]/30 flex flex-col items-center justify-center p-6">
-          <div class="w-28 h-28 rounded-full border-2 border-[#D4AF37] p-1 bg-[#1A1810]">
-            <div class="w-full h-full rounded-full bg-[#0D0D0D] flex items-center justify-center text-[#D4AF37] font-bold text-2xl">
-              VH
-            </div>
-          </div>
+        <div class="w-full aspect-[4/5] rounded-xl bg-[#12110D] border border-[#D4AF37]/30 flex flex-col items-center justify-center p-6 overflow-hidden">
+          ${photoHtml}
           <h3 class="font-bold text-white text-lg mt-4">VICTOR HUGO</h3>
           <p class="text-xs text-[#D4AF37]">Consultor Estratégico de Brindes B2B</p>
           <span class="mt-3 px-3 py-1 rounded bg-[#1C180E] border border-[#D4AF37]/30 text-[10px] text-gray-300">Belo Horizonte / MG — (31) 99745-5656</span>

@@ -6,7 +6,12 @@ import victorHugoImg from '../assets/images/victor_hugo_portrait_1786554764577.j
 
 export const HeroSection: React.FC = () => {
   const { isAdmin } = useAdmin();
-  const [customPhotoUrl, setCustomPhotoUrl] = useState<string | null>(null);
+  const [customPhotoUrl, setCustomPhotoUrl] = useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('victor_custom_photo');
+    }
+    return null;
+  });
   const [showPhotoUploader, setShowPhotoUploader] = useState(false);
 
   const displayPhoto = customPhotoUrl || victorHugoImg;
@@ -14,8 +19,22 @@ export const HeroSection: React.FC = () => {
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const url = URL.createObjectURL(file);
-      setCustomPhotoUrl(url);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64 = reader.result as string;
+        setCustomPhotoUrl(base64);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('victor_custom_photo', base64);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleResetPhoto = () => {
+    setCustomPhotoUrl(null);
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('victor_custom_photo');
     }
   };
 
@@ -173,7 +192,7 @@ export const HeroSection: React.FC = () => {
                       </span>
                       {customPhotoUrl && (
                         <button
-                          onClick={() => setCustomPhotoUrl(null)}
+                          onClick={handleResetPhoto}
                           className="text-[10px] text-gray-400 hover:text-white flex items-center gap-1 cursor-pointer underline"
                         >
                           <RefreshCw className="w-2.5 h-2.5" /> Restaurar Foto Padrão
