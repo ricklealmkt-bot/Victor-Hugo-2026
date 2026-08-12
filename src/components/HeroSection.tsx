@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MessageSquare, Shield, TrendingUp, Award, CheckCircle2, Upload, RefreshCw } from 'lucide-react';
 import { handleWhatsAppClick } from '../utils/whatsapp';
 import { useAdmin } from '../context/AdminContext';
-import victorHugoImg from '../assets/images/victor_hugo_portrait_1786554764577.jpg';
+import victorHugoImg from '../assets/images/victor_hugo_portrait_1786557270601.jpg';
 
 export const HeroSection: React.FC = () => {
   const { isAdmin } = useAdmin();
