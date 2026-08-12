@@ -6,9 +6,16 @@ import victorHugoImg from '../assets/images/victor_hugo_portrait_1786557270601.j
 
 export const HeroSection: React.FC = () => {
   const { isAdmin } = useAdmin();
+  const STORAGE_KEY = 'victor_custom_photo_v3';
+
   const [customPhotoUrl, setCustomPhotoUrl] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('victor_custom_photo');
+      localStorage.removeItem('victor_custom_photo');
+      localStorage.removeItem('victor_custom_photo_v2');
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved && !saved.startsWith('blob:')) {
+        return saved;
+      }
     }
     return null;
   });
@@ -24,7 +31,7 @@ export const HeroSection: React.FC = () => {
         const base64 = reader.result as string;
         setCustomPhotoUrl(base64);
         if (typeof window !== 'undefined') {
-          localStorage.setItem('victor_custom_photo', base64);
+          localStorage.setItem(STORAGE_KEY, base64);
         }
       };
       reader.readAsDataURL(file);
@@ -34,7 +41,9 @@ export const HeroSection: React.FC = () => {
   const handleResetPhoto = () => {
     setCustomPhotoUrl(null);
     if (typeof window !== 'undefined') {
+      localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem('victor_custom_photo');
+      localStorage.removeItem('victor_custom_photo_v2');
     }
   };
 
